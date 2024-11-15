@@ -83,3 +83,241 @@ When The manager Clicks on submit:
 On Employee Dashboard Home page:
 
 It should provide a box of the term name, which was created by manager. 
+
+
+OOp: 
+OOP
+
+1) What is the OOPS and why is it important?
+ Object-Oriented Programming (OOP) is a programming paradigm centered around objects, which are instances of classes that encapsulate data and behavior. Key principles of OOP include encapsulation, inheritance, data abstracion, and polymorphism, allowing for modular, reusable, and maintainable code. OOP helps manage complexity in large software projects by organizing code into self-contained, interacting objects.
+
+2) What is a Class?
+A class is a building block of Object Oriented Programs. It is a user-defined data type that contains the data members and member functions that operate on the data members. It is like a blueprint of objects having common properties and methods.
+
+3) What is an Object?
+An object is an instance of a class. Data members and methods of a class cannot be used directly. We need to create an object (or instance) of the class to use them. 
+
+4) What are the main features of OOPs?
+Main features also known as 4 pillars:
+Encapsulation : Encapsulation is the binding of data and methods that manipulate them into a single unit such that the sensitive data is hidden from the users
+
+Data Abstraction: Abstraction is similar to data encapsulation and is very important in OOP. It means showing only the necessary information and hiding the other irrelevant information from the user. Abstraction is implemented using classes and interfaces.
+
+Polymorphism : The word “Polymorphism” means having many forms. It is the property of some code to behave differently for different contexts. For example, in C++ language, we can define multiple functions having the same name but different working depending on the context.
+
+Inheritance: The idea of inheritance is simple, a class is derived from another class and uses data and implementation of that other class. The class which is derived is called child or derived or subclass and the class from which the child class is derived is called parent or base or superclass.
+
+5) What are the Access Specifiers?
+Access specifiers are special types of keywords that are used to specify or control the accessibility of entities like classes, methods, and so on. Private, Public, and Protected are examples of access specifiers or access modifiers. 
+
+6) What are some commonly used Object Oriented Programming Languages?
+C++, JAVA, JavaScript, Python, C#, Ruby.
+
+7) What are the different types of Polymorphism?
+Compile Time Polymorphism
+Runtime Polymorphism
+
+8) What is the difference between overloading and overriding?
+Method Overloading allows multiple methods with the same name but different parameter in the same class. It is resolved at compile time. Method overriding lets a subclass provide specific implementation of a method from its superclass. Its resolved at runtime. Overloading focuses on different method signatures whereas overriding focuses on redefining a method in a subclass.
+
+9) What is Constructor?
+A constructor is a block of code that initializes the newly created object. It doesn’t have a return type. It generally is the method having the same name as the class but in some languages, it might differ.
+In C++ and Java, the constructor is named the same as the class name.
+
+10) what is a Compiler?
+A compiler is a program that translates source code written in a high-level programming language into machine code or an intermediate code.
+
+11) Call by Value vs Call by reference:
+Call by value passes a copy of the argument's value to the function, meaning changes to the parameter do not affect the original variable. Call by reference passes the argument's memory address, allowing the function to modify the original variable's value. Java primarily uses call by value for primitive types and call by reference-like behavior for objects, where the reference to the object is passed by value.
+
+React: 
+React:
+
+1) What is the role of React in Software Development?
+The role of React is to basically simplify the complications of UI/Frontend server. HTML/CSS and JavaScript can handle the Frontend, but to simplify the complications we use React Library.
+
+
+2) What is React?
+React is an open Source JavaScript Library.
+React is used for building user interfaces.
+React simplifies the creation of single page application by using reusable components.
+
+3) What is Single Page Application?
+A single page application is a web application that have only one single web page.
+Meaning whenever user do some action on the website, then in response content is dynamically updated without refreshing or loading a new page.
+
+4) What are the advantages of React?
+It is very simple to build single page application (by using components)
+React is cross platform and open source
+Testing is very easy.
+React is lightweight and very fast
+
+5) What are the disadvantages of React?
+React is not good choice for small application because to create small application using react can make things more complicated.
+for example portfolio.
+
+6) React and Angular
+Both are used to create single page UI application using components.
+
+React is JavaScript Library whereas Angular is a complete framework.
+React uses a virtual DoM which makes it faster whereas Angular uses real DOM.
+
+7) What is DOM?
+DOM which stands for Document Object Model represents the web page as a tree-like structure which allows JavaScript to dynamically access and manipulate the content and structure    of a web page.
+
+8) DOM and Virtual DOM?
+React uses a virtual DOM to efficiently update the UI without re-render the entire page, which helps improve performance and make the application more responsive.
+
+9) What are react Components?
+In react, a component is a reusable building block for creating user interfaces.
+
+10) What is npm? What is the role of node_modules folder?
+NPM is used to manage the dependencies for your react project, including the react library itself which are stored in the node_modules folder.
+node_modules folder contains all the dependencies of the project, including the React libraries.
+
+11) What is the role of public folder in react?
+Public folder contains static assets that are served directly to the user's browser, such as images, fonts, and the index.html file.
+
+12) What is the role of src folder in the react?
+In react, src folder is used to store all the source code of the application.
+
+13) index.html: Its a entry point to the application
+
+14) App.js: Its the Top/ main/ root level component in a react application, and it is responsible for rendering all of the other components.
+
+15) what is the role of function and return inside App.js?
+In React, a function is a JavaScript function that returns a React element.
+
+16) Can we have a function without return inside App.js?
+Yes, its possible. we can also just simple do console.log and print something.
+
+17) What is the role of export default inside App.js?
+It is used to make this app component available for import using "import" statement in other files.
+
+18) What is the role of index.js file, ReactDOM and render method in React?
+ReactDOM is a JavaScript library which converts your components( which are written in React syntax) to the actual browser DOM.
+
+19) How react app load and display the component in browser?
+A React app loads and displays components in the browser by first initializing the root component, typically rendered into a DOM element. React then creates a virtual DOM, which is a lightweight copy of the actual DOM, and uses it to determine the minimal set of changes needed to update the real DOM efficiently. When state or props change, React re-renders the affected components and updates the browser's DOM accordingly.
+
+20) What is JSX?
+JSX stands for JavaScript XML is a syntax extension used by react to write HTML-like code.
+
+21) What are the advantages of JSX?
+JSX improve code readability and writability
+Error checking happens in advance so Type safety.
+It also supports JavaScript Expressions as well.
+
+22) Can browser read a JSX file? what is Babel?
+No, browser will not understand the JSX code directly. Browser only understands HTML, CSS and JavaScript.
+JSX code gets converted to valid JavaScript code using Babel library. This javaScript will be understandable by the browser.
+
+Babel in React is used to transpile JSX syntax into regular JavaScript which browser can understand.
+
+23) What is Transpiler?
+Transpiler is a tool that converts source code from one programming language to another programming language.
+
+24) Is it possible to use JSX without React?
+Yes
+
+25) What is the role of fragment in React?
+In React, a fragment is a way to group a list of children without adding extra nodes to the DOM.
+
+26) How do you iterate over a list in JSX? What is map() method?
+map() method allows you to iterate over an array and modify its elements using a callback function.
+
+27) What are props n JSX?
+Props are a way to pass data from a parent component to a child component.
+
+28) What are spread operator?
+The spread operator (...) is basically used to expand or spread an array or object.
+
+29) What are the types of conditional rendering in JSX?
+4 type of Conditional rendering:
+1. If/else Statement 
+2. Ternary operator
+3. && operator (evaluate only true condition)
+4. switch statement
+
+
+
+Java: JAVA
+1) What is JVM, JRE, and JDK?
+
+JVM: JVM also known as Java Virtual Machine is a part of JRE. JVM is a type of interpreter responsible for converting bytecode into machine-readable code. JVM itself is platform dependent but it interprets the bytecode which is the platform-independent reason why Java is platform-independent. 
+JRE: JRE stands for Java Runtime Environment, it is an installation package that provides an environment to run the Java program or application on any machine.
+JDK: JDK stands for Java Development Kit which provides the environment to develop and execute Java programs. JDK is a package that includes two things Development Tools to provide an environment to develop your Java programs and, JRE to execute Java programs or applications.
+
+2) Is Java Platform Independent if then how?
+Yes, Java is a Platform Independent language. Unlike many programming languages javac compiles the program to form a bytecode or .class file. This file is independent of the software or hardware running but needs a JVM(Java Virtual Machine) file preinstalled in the operating system for further execution of the bytecode.
+
+3) What are the differences between Java and C++?
+C++ is Platform Dependent whereas Java is Platform independent.
+C++ is maily used for System programming whereas Java is mainly used for Application programming.
+C++ is nearer to hardware whereas java is not so interactive with hardware
+Functionality supported in java: Thread support/ Documentation comment/ unsigned right shift.
+Functionality supported in C++: goto / pointers/ call by reference/ Structures/ Multiple Inheritance, Virtual functions.
+
+4) Explain different data types in Java.
+There are 2 types of data types in Java as mentioned below:
+
+Primitive Data Type
+Non-Primitive Data Type or Object Data type
+Primitive Data Type: Primitive data are single values with no special capabilities. 
+There are 8 primitive data types:
+boolean, byte, char, short, int, long, float, double
+
+Non-Primitive Data Type: Reference Data types will contain a memory address of the variable’s values because it is not able to directly store the values in the memory. Types of Non-Primitive are mentioned below:
+Strings, Array, Class, Object, Interface
+
+5) JAVA Pointers 
+No, Java doesn’t provide the support of Pointer. As Java needed to be more secure because which feature of the pointer is not provided in Java.
+
+6) What is an Array?
+An array is a data structure that stores a fixed-size sequential collection of elements of the same type. It allows for efficient access to elements using an index, which represents the position of each element in the sequence. Arrays are commonly used for storing and managing collections of data in programming.
+
+7) What is a Linked List?
+A linked list is a linear data structure where elements, called nodes, are connected by pointers. Each node contains data and a reference to the next node in the sequence. Linked lists allow for efficient insertions and deletions but have slower access times compared to arrays due to the need to traverse nodes sequentially.
+
+77) Binary Trees?
+A binary tree is a hierarchical data structure in which each node has at most two children, referred to as the left child and the right child. Binary trees are used in various applications such as searching, sorting, and hierarchical data representation.
+
+78) Hash Maps?
+Hash maps are data structures that store key-value pairs, providing efficient data retrieval based on keys. They use a hash function to compute an index into an array of buckets or slots, from which the desired value can be found. Hash maps offer average-case constant time complexity.
+
+79) What is the thread?
+A thread is the smallest unit of execution within a process, allowing concurrent operations within the same application. Each thread shares the process's resources, such as memory and file handles, but executes independently. Threads enable multitasking within a program, improving performance, especially on multi-core processors. 
+
+8) Linked list supported by java
+Yes, Java supports linked lists through its LinkedList class, which is part of the java.util package. The LinkedList class implements the List interface and provides methods for adding, removing, and accessing elements, supporting both singly and doubly linked list operations. It is useful for scenarios where frequent insertions and deletions are needed.
+
+9) what is  Recursion?
+Recursion is a programming technique where a function calls itself to solve smaller instances of the same problem. It typically involves a base case to terminate the recursive calls and prevent infinite loops. Recursion is often used for problems that can be broken down into simpler, repetitive subproblems, such as traversing tree structures or solving mathematical sequences.
+
+10) Which sorting algorithm is the best?
+I believe, There is no single "best" sorting algorithm; it depends on the specific use case and data set characteristics. We need to look into time complexity.
+
+11) What is the difference between systems.out, System.err, and System.in?
+System.out – It is a PrintStream that is used for writing characters or can be said it can output the data we want to write on the Command Line Interface console/terminal. 
+System.err – It is used to display error messages.
+System.in – It is an InputStream used to read input from the terminal Window. We can’t use the System.in directly so we use Scanner class for taking input with the system.in.
+
+12) Syntax on how to create a linked list and a vector in Java?
+LinkedList<String> linkedList = new LinkedList<>();
+
+13) How to find the highest number that exists in a list?
+To find the highest number in a list in Java, you can use the Collections.max()
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+int max = Collections.max(list);
+
+14) How do you reverse a string in Java?
+To reverse a string in Java, you can use the StringBuilder class:
+String original = "example";
+String reversed = new StringBuilder(original).reverse().toString();
+
+16) how to create a HashMap.
+HashMap<KeyType, ValueType> hashMap = new HashMap<>();
+
+
+
+
