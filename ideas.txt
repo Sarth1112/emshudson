@@ -1,0 +1,85 @@
+Happening all this on manager / admin.
+Now i have to work on building a schedule so the steps which i have in my mind are:
+
+First when manager clicks on the schedule building,
+Note: These actions are to be done in one Webpage, Without opening a new webpage.
+
+It will have option of Create Schedule button, when manager clicks on it. 
+it will pop up the form on the same page. 
+Form will ask the input of 
+
+
+//To easily find out for which term of schedule it is. 
+1)Term name (Type String), 
+
+
+//Availability entered by employee must be between from - to hours. 
+2)Total shift hours (Based on these hours/ so when employees enter their availability hours, there will be a validation check that the availability they provide is valid.
+	Mon	Tue	Wed	Thu	Fri	Sat 	Sun
+From
+To  
+
+How many Kitchen Classes This term?
+Based on the number of kitchen classes, It will ask for information for that many time. There will be an option of adding, editing and deleting the class as well.
+for Example let's say if i enter 3 for the question.
+It should ask me the information three times. 
+Input Kitchen class Information:
+1)Class name:
+Room:  
+Day: 
+Hours:
+
+2)Class name:
+Room:  
+Day: 
+Hours:
+
+3)Class name:
+Room:  
+Day: 
+Hours:
+
+How many ITV Classes This term?
+Based on the number of ITV classes, It will ask for information for that many time. There will be an option of adding, editing and deleting the class as well.
+for Example let's say if i enter 3 for the question.
+It should ask me the information three times. 
+Input ITV Class Information: 
+1)
+Class name: 
+Room:
+Day: 
+Hours:
+
+2) 
+Class name: 
+Room:
+Day: 
+Hours:
+
+3) 
+Class name: 
+Room:
+Day: 
+Hours:
+
+
+
+Submit:
+
+
+Storing everything in mongoDB Database. 
+Database name: Schedule
+Collection name: Terms
+
+
+
+After submitting the form. 
+Form goes away and one box is created with the title of Term name. 
+
+
+
+When The manager Clicks on submit:
+
+On Employee Dashboard Home page:
+
+It should provide a box of the term name, which was created by manager. 
