@@ -2,13 +2,41 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ScheduleForm from './components/ScheduleForm';
 
 const ManagerDashboard = () => {
     const [view, setView] = useState('hem');
     const [employees, setEmployees] = useState([]);
-    const [scheduleName, setScheduleName] = useState('');
     const [message, setMessage] = useState(null);
+    const [showScheduleForm, setShowScheduleForm] = useState(false);
+    const [schedules, setSchedules] = useState([]);
     const navigate = useNavigate();
+
+    const handleCreateSchedule = async (formData) => {
+        try {
+          const scheduleData = {
+            term: formData.term,
+            year: formData.year,
+            shiftHours: {
+              monday: { from: formData.shifts.monday.from, to: formData.shifts.monday.to },
+              tuesday: { from: formData.shifts.tuesday.from, to: formData.shifts.tuesday.to },
+              wednesday: { from: formData.shifts.wednesday.from, to: formData.shifts.wednesday.to },
+              thursday: { from: formData.shifts.thursday.from, to: formData.shifts.thursday.to },
+              friday: { from: formData.shifts.friday.from, to: formData.shifts.friday.to },
+              saturday: { from: formData.shifts.saturday.from, to: formData.shifts.saturday.to },
+              sunday: { from: formData.shifts.sunday.from, to: formData.shifts.sunday.to }
+            },
+            employeeAvailability: []
+          };
+      
+          const response = await axios.post('http://localhost:3001/schedules', scheduleData);
+          setSchedules([...schedules, response.data]);
+          setShowScheduleForm(false);
+        } catch (error) {
+          console.error('Error creating schedule:', error);
+        }
+      };
+  
 
     useEffect(() => {
         if (view === 'employees') {
@@ -38,7 +66,6 @@ const ManagerDashboard = () => {
     return (
         <div>
             <Navbar onLinkClick={setView} />
-
             <div className="container mt-4">
                 {message && (
                     <div className={`alert ${message.type === 'success' ? 'alert-success' : 'alert-danger'}`}>
@@ -91,20 +118,32 @@ const ManagerDashboard = () => {
                 )}
 
                 {view === 'schedule' && (
-                    <form>
-                        <div className="form-group">
-                            <label htmlFor="scheduleName">Enter Schedule Name:</label>
-                            <input
-                                type="text"
-                                id="scheduleName"
-                                className="form-control"
-                                value={scheduleName}
-                                onChange={e => setScheduleName(e.target.value)}
-                            />
+                    <div className="container mt-4">
+                    <button 
+                        className="btn btn-primary mb-3"
+                        onClick={() => setShowScheduleForm(true)}
+                    >
+                        Create Schedule
+                    </button>
+                    
+                    {showScheduleForm && (
+                        <ScheduleForm onSubmit={handleCreateSchedule} onClose={() => setShowScheduleForm(false)} />
+                    )}
+
+                    <div className="row">
+                        {schedules.map((schedule) => (
+                        <div key={schedule._id} className="col-md-4 mb-3">
+                            <div className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">{schedule.term}{schedule.year}</h5>
+                            </div>
+                            </div>
                         </div>
-                    </form>
+                        ))}
+                    </div>
+                    </div>
                 )}
-            </div>
+                </div>
         </div>
     );
 };

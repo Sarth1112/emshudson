@@ -9,7 +9,7 @@ const SignupForm = () => {
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [id, setId] = useState('');
   const [error, setError] = useState('');
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,6 +28,7 @@ const SignupForm = () => {
         .then(result => {
                 console.log(result);
                 setError('');
+                navigate('/login');
                 
             })
             .catch(err => {

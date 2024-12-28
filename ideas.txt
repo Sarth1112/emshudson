@@ -15,7 +15,7 @@ Form will ask the input of
 
 //Availability entered by employee must be between from - to hours. 
 2)Total shift hours (Based on these hours/ so when employees enter their availability hours, there will be a validation check that the availability they provide is valid.
-	Mon	Tue	Wed	Thu	Fri	Sat 	Sun
+	Mon	Tue	Wed	Thu	Fri	Sat Sun
 From
 To  
 
@@ -134,7 +134,7 @@ React:
 React:
 
 1) What is the role of React in Software Development?
-The role of React is to basically simplify the complications of UI/Frontend server. HTML/CSS and JavaScript can handle the Frontend, but to simplify the complications we use React Library.
+The role of  is to basically simplify the complications of UI/Frontend server. HTML/CSS and JavaScript can handle the Frontend, but to simplify the complications we use React Library.
 
 
 2) What is React?
