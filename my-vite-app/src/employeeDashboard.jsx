@@ -8,9 +8,12 @@ const employeeDashboard = () => {
   const [schedules, setSchedules] = useState([]);
   const [showAvailabilityForm, setShowAvailabilityForm] = useState(false);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
-   const [view, setView] = useState('hem');
+  const [view, setView] = useState('hem');
+
+  const employeeId = localStorage.getItem('employeeId');
 
    useEffect(() => {
+      
     axios.get('http://localhost:3001/schedules')
       .then(response => setSchedules(response.data))
       .catch(error => console.error('Error:', error));
@@ -55,6 +58,7 @@ const employeeDashboard = () => {
                     {showAvailabilityForm && selectedSchedule && (
                       <AvailabilityForm 
                         schedule={selectedSchedule}
+                        employeeId={employeeId}
                         onClose={() => setShowAvailabilityForm(false)}
                       />
                     )}

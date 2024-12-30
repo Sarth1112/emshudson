@@ -9,24 +9,26 @@ const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const userData = { email, password };
-        axios.post('http://localhost:3001/login', userData)
-            .then((response) => {
-                if(response.data.role === 'admin') {
-                    navigate('/manager-dashboard');
-                }else if(response.data.role === 'employee') {
-                    navigate('/employee-dashboard');
-                }
-            })
-
-            .catch((err) => {
-                setError('Invalid email or password');
-                console.error(err);
-            });
-
-    };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+          const response = await axios.post('http://localhost:3001/login', {
+              email, password
+          });
+          
+          if(response.data.employeeId) {
+              localStorage.setItem('employeeId', response.data.employeeId);
+          }
+          
+          if(response.data.role === 'admin') {
+              navigate('/manager-dashboard');
+          } else {
+              navigate('/employee-dashboard');
+          }
+      } catch(error) {
+          setError('Invalid credentials');
+      }
+  };
 
   return (
     <div className="background-image d-flex justify-content-center align-items-center vh-100">

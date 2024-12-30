@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 
 const AvailabilityForm = ({ schedule, employeeId, onSubmit }) => {
@@ -30,13 +31,21 @@ const AvailabilityForm = ({ schedule, employeeId, onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:3001/availability/${schedule._id}`, {
+      console.log('Submitting data:', {
+        scheduleId: schedule._id,
         employeeId,
         availability
       });
+      
+      const response = await axios.post(`http://localhost:3001/availability/${schedule._id}`, {
+        employeeId,
+        availability
+      });
+      console.log('Response:', response.data);
       alert('Availability submitted successfully!');
     } catch (error) {
-      alert('Error submitting availability');
+      console.error('Submission error:', error.response?.data || error.message);
+      alert(`Error submitting availability: ${error.response?.data?.error || error.message}`);
     }
   };
 

@@ -47,29 +47,38 @@ mongoose.connect('mongodb://127.0.0.1:27017/Employees', {
 
 app.post('/availability/:scheduleId', async (req, res) => {
     try {
-        const { scheduleId } = req.params;
-        const { employeeId, availability } = req.body;
-
-        const schedule = await scheduleModel.findById(scheduleId);
-        if (!schedule) {
-            return res.status(404).json({ error: 'Schedule not found' });
-        }
-
-        const collectionName = `${schedule.term}${schedule.year}`;
-        const AvailabilityModel = getAvailabilityModel(collectionName);
-
-        const availabilityEntry = new AvailabilityModel({
-            employeeId,
-            scheduleId,
-            availability
-        });
-
-        await availabilityEntry.save();
-        res.status(201).json(availabilityEntry);
+      const { scheduleId } = req.params;
+      const { employeeId, availability } = req.body;
+      
+      console.log('Received data:', { scheduleId, employeeId, availability });
+  
+      const schedule = await scheduleModel.findById(scheduleId);
+      console.log('Found schedule:', schedule);
+  
+      if (!schedule) {
+        return res.status(404).json({ error: 'Schedule not found' });
+      }
+  
+      const collectionName = `${schedule.term}${schedule.year}`;
+      console.log('Collection name:', collectionName);
+  
+      const AvailabilityModel = getAvailabilityModel(collectionName);
+      
+      const availabilityEntry = new AvailabilityModel({
+        employeeId,
+        scheduleId,
+        availability
+      });
+  
+      const saved = await availabilityEntry.save();
+      console.log('Saved entry:', saved);
+      
+      res.status(201).json(saved);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+      console.error('Server error:', error);
+      res.status(500).json({ error: error.message });
     }
-});
+  });
   
   app.post('/schedules', async (req, res) => {
     try {
@@ -119,24 +128,21 @@ app.post('/login', async (req,res) => {
 
     if (email === 'admin@hccc.edu' && password === 'admin123') {
         return res.status(200).json({role:'admin'});
-
     }
 
-    //otherwise, look up the employee in the database
-    try{
-        const employee = await EmployeesModel.findOne({email,password});
+    try {
+        const employee = await EmployeesModel.findOne({email, password});
         if(employee) {
-            res.status(200).json({role: 'employee'});
-
-        }else{
+            res.status(200).json({
+                role: 'employee',
+                employeeId: employee._id // Send employee ID
+            });
+        } else {
             res.status(401).json({error: 'Invalid email or password'});
         }
-
     } catch (err) {
         res.status(500).json({error: 'server error'});
-
     }
-
 });
 
 
