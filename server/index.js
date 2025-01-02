@@ -45,6 +45,40 @@ mongoose.connect('mongodb://127.0.0.1:27017/Employees', {
     }
 };
 
+app.delete('/schedules/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // First find the schedule to get its term and year
+        const schedule = await scheduleModel.findById(id);
+        if (!schedule) {
+            return res.status(404).json({ error: 'Schedule not found' });
+        }
+
+        // Get the collection name for availability data
+        const collectionName = `${schedule.term}${schedule.year}`;
+        
+        try {
+            // Try to get the availability model for this schedule
+            const AvailabilityModel = getAvailabilityModel(collectionName);
+            
+            // Delete all availability entries for this schedule
+            await AvailabilityModel.deleteMany({ scheduleId: id });
+        } catch (error) {
+            console.log('No availability data found for this schedule');
+            // Continue with schedule deletion even if availability cleanup fails
+        }
+
+        // Delete the schedule
+        await scheduleModel.findByIdAndDelete(id);
+
+        res.status(200).json({ message: 'Schedule deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting schedule:', error);
+        res.status(500).json({ error: 'Failed to delete schedule' });
+    }
+});
+
 app.post('/availability/:scheduleId', async (req, res) => {
     try {
       const { scheduleId } = req.params;

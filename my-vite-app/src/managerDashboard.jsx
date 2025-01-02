@@ -36,6 +36,20 @@ const ManagerDashboard = () => {
           console.error('Error creating schedule:', error);
         }
       };
+
+
+      const handleDeleteSchedule = async (scheduleId) => {
+        try {
+            if (window.confirm('Are you sure you want to delete this schedule?')) {
+                await axios.delete(`http://localhost:3001/schedules/${scheduleId}`);
+                setSchedules(prevSchedules => prevSchedules.filter(schedule => schedule._id !== scheduleId));
+                setMessage({ type: 'success', text: 'Schedule deleted successfully' });
+            }
+        } catch (error) {
+            console.error('Error deleting schedule:', error);
+            setMessage({ type: 'error', text: 'Failed to delete schedule' });
+        }
+    };
   
 
     useEffect(() => {
@@ -46,7 +60,18 @@ const ManagerDashboard = () => {
                     console.error('Error fetching employees:', error);
                     setMessage({ type: 'error', text: 'Failed to fetch employees' });
                 });
-        } else if (view === 'signout') {
+        } else if (view === 'schedule') {
+            // Fetch schedules when view changes to 'schedule'
+            axios.get('http://localhost:3001/schedules')
+                .then(response => {
+                    console.log('Fetched schedules:', response.data); // Debug log
+                    setSchedules(response.data);
+                })
+                .catch(error => {
+                    console.error('Error fetching schedules:', error);
+                    setMessage({ type: 'error', text: 'Failed to fetch schedules' });
+                });
+        } else if(view === 'signout') {
             navigate('/login'); // Redirect to login page on signout
         }
     }, [view, navigate]);
@@ -117,30 +142,40 @@ const ManagerDashboard = () => {
                     </table>
                 )}
 
-                {view === 'schedule' && (
-                    <div className="container mt-4">
-                    <button 
-                        className="btn btn-primary mb-3"
-                        onClick={() => setShowScheduleForm(true)}
-                    >
-                        Create Schedule
-                    </button>
-                    
-                    {showScheduleForm && (
-                        <ScheduleForm onSubmit={handleCreateSchedule} onClose={() => setShowScheduleForm(false)} />
-                    )}
-
-                    <div className="row">
-                        {schedules.map((schedule) => (
-                        <div key={schedule._id} className="col-md-4 mb-3">
-                            <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">{schedule.term}{schedule.year}</h5>
+            {view === 'schedule' && (
+                    <div>
+                        <button 
+                            className="btn btn-primary mb-3"
+                            onClick={() => setShowScheduleForm(!showScheduleForm)}
+                        >
+                            Create Schedule
+                        </button>
+                        
+                        {showScheduleForm ? (
+                            <ScheduleForm onSubmit={handleCreateSchedule} />
+                        ) : (
+                            <div className="row">
+                                {schedules.map((schedule) => (
+                                    <div key={schedule._id} className="col-md-4 mb-3">
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <h5 className="card-title">
+                                                    {schedule.term} {schedule.year}
+                                                </h5>
+                                                <div className="mt-3">
+                                                    <button 
+                                                        className="btn btn-danger"
+                                                        onClick={() => handleDeleteSchedule(schedule._id)}
+                                                    >
+                                                        Delete Schedule
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                            </div>
-                        </div>
-                        ))}
-                    </div>
+                        )}
                     </div>
                 )}
                 </div>
