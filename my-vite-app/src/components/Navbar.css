@@ -27,3 +27,35 @@
     position: relative;
   }
     
+/* Add these styles to your Navbar.css file */
+/* Navbar.css */
+.navbar-collapse.show {
+  display: block;
+}
+
+.navbar-collapse {
+  transition: height 0.35s ease;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .navbar-nav {
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* Prevent default link behavior */
+.navbar a {
+  cursor: pointer;
+}
+
+/* Add spacing between nav items in mobile view */
+@media (max-width: 991px) {
+  .navbar-nav .nav-item {
+    padding: 0.25rem 0;
+  }
+}
