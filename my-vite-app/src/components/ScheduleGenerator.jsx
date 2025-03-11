@@ -161,11 +161,13 @@ const ScheduleGenerator = ({ schedules, employees, availabilities }) => {
             console.log("All availabilities before filtering:", availabilities);
             console.log("Selected schedule:", selectedSchedule);
 
-           
+            console.log("Looking for:", selectedScheduleId, selectedSchedule.term, selectedSchedule.year)
             // Get employee availabilities for the selected schedule
+           // Get employee availabilities for the selected schedule
             const scheduleAvailabilities = availabilities.filter(
-                a => a.scheduleId === selectedScheduleId || 
-                   (a.scheduleTerm === selectedSchedule.term && a.scheduleYear === selectedSchedule.year)
+                a => (a.scheduleId === selectedScheduleId) || 
+                    (a.scheduleTerm === selectedSchedule.term && 
+                    parseInt(a.scheduleYear) === selectedSchedule.year)
             );
             console.log("Filtered availabilities:", scheduleAvailabilities);
 
@@ -221,6 +223,7 @@ const ScheduleGenerator = ({ schedules, employees, availabilities }) => {
         employees.forEach(employee => {
             const employeeSchedule = {
                 employeeId: employee._id,
+                employeeRealId: employee.id, // Add this line to store the employee's real ID
                 employeeName: employee.name,
                 totalHours: 0,
                 assignedLab: determineBestLab(employee._id, campusAssignments),
@@ -516,7 +519,7 @@ const ScheduleGenerator = ({ schedules, employees, availabilities }) => {
                                     {filteredSchedule.map(employee => (
                                         <React.Fragment key={employee.employeeId}>
                                             <tr>
-                                                <td>{employee.employeeId}</td>
+                                                <td>{employee.employeeRealId || employee.employeeId}</td>
                                                 <td>{employee.employeeName}</td>
                                                 {days.map(day => (
                                                     <td key={day}>
@@ -591,9 +594,15 @@ const ScheduleGenerator = ({ schedules, employees, availabilities }) => {
                                                                 </thead>
                                                                 <tbody>
                                                                     {days.map(day => {
+                                                                        // Get the selected schedule details
+                                                                        const selectedSchedule = schedules.find(s => s._id === selectedScheduleId);
+                                                                        
+                                                                        // Find availability using the same logic as the schedule generation
                                                                         const availability = availabilities.find(a => 
                                                                             a.employeeId === employee.employeeId && 
-                                                                            a.scheduleId === selectedScheduleId
+                                                                            (a.scheduleId === selectedScheduleId || 
+                                                                            (a.scheduleTerm === selectedSchedule?.term && 
+                                                                            parseInt(a.scheduleYear) === selectedSchedule?.year))
                                                                         );
                                                                         
                                                                         return (
